@@ -3,6 +3,7 @@ const express = require('express');
 const ejsMate = require('ejs-mate');
 const path = require('path');
 const methodOverride = require('method-override');
+const Campground = require('./models/campground');
 
 const app = express();
 app.engine('ejs', ejsMate);
@@ -21,6 +22,11 @@ db.once('open', () => {
 
 app.get('/', (req, res) => {
   res.render('home');
+});
+
+app.get('/campgrounds', async (req, res) => {
+  const Campgrounds = await Campground.find({});
+  res.render('campgrounds/index', { Campgrounds });
 });
 
 app.listen(3000, () => {
