@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const session = require('express-session');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 
@@ -24,6 +25,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+const sessionConfig = {
+  secret: 'thisshouldabettersecret',
+  resave: false,
+  saveUnititialized: true,
+};
+app.use(session(sessionConfig));
 
 app.use('/campgrounds', campgrounds);
 app.use('/campgrounds/:id/reviews', reviews);
