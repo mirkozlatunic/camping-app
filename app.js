@@ -9,7 +9,6 @@ const ExpressError = require('./utils/ExpressError');
 
 const campgrounds = require('./routes/campgrounds');
 const reviews = require('./routes/reviews');
-const exp = require('constants');
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp');
 
@@ -31,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const sessionConfig = {
   secret: 'thisshouldabettersecret',
   resave: false,
-  saveUnititialized: true,
+  saveUninitialized: true,
   cookie: {
     httpOnly: true,
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
