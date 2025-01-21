@@ -14,7 +14,7 @@ const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp');
+mongoose.connect('mongodb://127.0.0.1:27017/camping-app');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
@@ -41,6 +41,7 @@ const sessionConfig = {
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
+
 app.use(session(sessionConfig));
 app.use(flash());
 
