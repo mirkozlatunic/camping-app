@@ -23,7 +23,6 @@ router.post(
   catchAsync(async (req, res, next) => {
     const campground = new Campground(req.body.campground);
     campground.author = req.user._id;
-
     await campground.save();
     req.flash('success', 'Successfully made a new campground!');
     res.redirect(`/campgrounds/${campground._id}`);
@@ -46,6 +45,7 @@ router.get(
       req.flash('error', 'Cannot find that campground!');
       return res.redirect('/campgrounds');
     }
+    console.log(campground.reviews);
     res.render('campgrounds/show', { campground });
   })
 );
