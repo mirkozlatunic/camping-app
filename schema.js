@@ -1,16 +1,16 @@
 const BaseJoi = require('joi');
-const sanitizeHMTL = require('sanitize-html');
+const sanitizeHtml = require('sanitize-html');
 
-const extention = (joi) => ({
+const extension = (joi) => ({
   type: 'string',
   base: joi.string(),
-  message: {
+  messages: {
     'string.escapeHTML': '{{#label}} must not include HTML!',
   },
   rules: {
     escapeHTML: {
       validate(value, helpers) {
-        const clean = sanitizeHMTL(value, {
+        const clean = sanitizeHtml(value, {
           allowedTags: [],
           allowedAttributes: {},
         });
@@ -22,13 +22,12 @@ const extention = (joi) => ({
   },
 });
 
-const Joi = BaseJoi.extend(extention);
+const Joi = BaseJoi.extend(extension);
 
 module.exports.campgroundSchema = Joi.object({
   campground: Joi.object({
     title: Joi.string().required().escapeHTML(),
     price: Joi.number().required().min(0),
-    // image: Joi.string().required(),
     location: Joi.string().required().escapeHTML(),
     description: Joi.string().required().escapeHTML(),
   }).required(),
