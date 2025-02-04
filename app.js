@@ -15,6 +15,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanizite = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const { v4: uuidv4 } = require('uuid');
 
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
