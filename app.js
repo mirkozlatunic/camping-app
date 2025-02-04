@@ -21,7 +21,7 @@ const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const { name } = require('ejs');
 const MongoStore = require('connect-mongo');
-const dbUrl = 'mongodb://127.0.0.1:27017/camping-app';
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/camping-app';
 
 mongoose.connect(dbUrl);
 
@@ -92,11 +92,13 @@ app.use(
   })
 );
 
+const secret = process.ENV.SECRET || 'thisshouldabettersecret';
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   touchAfter: 24 * 60 * 60,
   crypto: {
-    secret: 'thisshouldabettersecret',
+    secret,
   },
 });
 
@@ -107,7 +109,7 @@ store.on('error', function (e) {
 const sessionConfig = {
   store,
   name: 'session',
-  secret: 'thisshouldabettersecret',
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
