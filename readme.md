@@ -36,6 +36,6 @@ This is an inspiring full-stack camping application designed to empower you to c
 
 ## <a name="link-page">🔋 Link to Page</a>
 
-- Live Site URL: [Vercel Page](https://camping-app-l4w5.onrender.com/)
+- Live Site URL: [Render Page](https://camping-app-l4w5.onrender.com/)
 
 ## <a name="improvements">🛠️ Improvements Ideas</a>
