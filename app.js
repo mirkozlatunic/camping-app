@@ -16,6 +16,7 @@ const User = require('./models/user');
 const mongoSanizite = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const { v4: uuidv4 } = require('uuid');
+const isPojo = require('is-pojo');
 
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
